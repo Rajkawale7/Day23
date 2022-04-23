@@ -5,39 +5,33 @@ import java.util.Scanner;
 public class UserRegistration {
 
 	public static void main(String[] args) {
-		//As a User need to a follow predefined Unique Password format.
-				Scanner scan = new Scanner (System.in);
-				int ch = 1;
-				do {
-			
-				System.out.println("Enter Your Unique Password: ");
-				String password = scan.next();
+		//Regex to check some valid Email Samples
+		String regex = "^[A-Za-z0-9+_.-]+@(.+)$";
+		Pattern p = Pattern.compile(regex);
+		Matcher m = p.matcher(regex);
+		
+		String Email1 = "Rajkawal00@gmail.com";		
+		System.out.println(Pattern.compile(regex).matcher(Email1).matches());
 
-				//Compiling the regex pattern for creating password
-				String regex = "^(?=.*[0-9])"
-						+ "(?=.*[a-z])(?=.*[A-Z])"
-		                + "(?=.*[@#$%^&+=])"
-		                + "(?=\\S+$).{8,20}$";
-				Pattern p = Pattern.compile(regex);
-				Matcher m = p.matcher(password);	
+		String Email2 = "rajkawale@gmail.com";		
+		System.out.println(Pattern.compile(regex).matcher(Email2).matches());
+		String Email3 = "raj_kawale@gmail.com";		
+		System.out.println(Pattern.compile(regex).matcher(Email3).matches());
 
-				if (m.find()) {
-					System.out.println("Match found");
-				}
-				else {
-					System.out.println("Match not found");
-				}
-				//To continue the same process by using do while loop
-				System.out.println("Continue...press 1,");
-				ch = scan.nextInt();
-				} 
-				while(ch==1);
+		String Email4 = "712@gmail.com";		
+		System.out.println(Pattern.compile(regex).matcher(Email4).matches());
+
+		String Email5 = "712@gmail.";		
+		System.out.println(Pattern.compile(regex).matcher(Email5).matches());
+
+		String Email6 = "RAJ712@GMAIL.COM";		
+		System.out.println(Pattern.compile(regex).matcher(Email6).matches());
+		
+		if (m.find()) {
+			System.out.println("Match found");
+		}
+		else {
+			System.out.println("Match not found");
 		}
 	}
-		
-
-
-
-//(0/91): number starts with (0/91)  
-//[7-9]: starting of the number may contain a digit between 0 to 9  
-//[0-9]: then contains digits 0 to 9
+} 
